@@ -1,0 +1,21 @@
+version: '3.8'
+
+
+services:
+    database:
+        image: mysql
+        container_name: i20-database
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: qUgr7YKwzPaokcQ1vxYO8ToU0Kg
+            MYSQL_DATABASE: i20DataBase
+
+        ports:
+            - '3301:3306'
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8040:80
+        environment:
+            - PMA_ARBITRARY=1
