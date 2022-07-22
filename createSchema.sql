@@ -1,3 +1,6 @@
+CREATE DATABASE i20DataBase;
+USE i20DataBase;
+
 # Таблица каталогов
 CREATE TABLE catalogs
 (
