@@ -45,10 +45,10 @@ CREATE TABLE products
     FOREIGN KEY (main_image_id) REFERENCES images (id)
 );
 
-# Таблиуа связи товаров и изображений(многие ко многим)
+# Таблица связи товаров и изображений(многие ко многим)
 CREATE TABLE productsImages
 (
-    id         INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id         INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     image_id   INT UNSIGNED NOT NULL,
     product_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (image_id) REFERENCES images (id),

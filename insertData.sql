@@ -22,7 +22,10 @@ VALUES ('IPhone', false, 1000, 'iphone description', 700, 600, 1, 1),
        ('Huawei', true, 3000, 'huawei laptop description', 2000, 2500, 3, 1),
        ('Mac', true, 5000, 'mac description', 4000, 4000, 3, 1),
        ('HP', true, 5000, 'hp description', 4000, 4000, 4, 1),
-       ('Samsung', true, 5000, 'samsung description', 4000, 4000, 4, 1);
+       ('Samsung', true, 5000, 'samsung description', 4000, 4000, 4, 1),
+       ('Huawei MagicBook', true, 5000, 'huawei description', 10000, 9000, 4, 1),
+       ('HP15', true, 4000, 'HP description', 3000, 3000, 4, 1),
+       ('Asus', true, 3000, 'asus description', 2000, 2000, 4, 1);
 
 
 
