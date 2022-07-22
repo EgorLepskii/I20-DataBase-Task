@@ -1,3 +1,5 @@
+USE i20DataBase;
+
 INSERT INTO catalogs(name)
 VALUES ('Смартфоны и гаджеты'),
        ('Ноутбуки и компьютеры');
