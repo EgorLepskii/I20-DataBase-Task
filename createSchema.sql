@@ -52,7 +52,8 @@ CREATE TABLE productsImages
     image_id   INT UNSIGNED NOT NULL,
     product_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (image_id) REFERENCES images (id),
-    FOREIGN KEY (product_id) REFERENCES products (id)
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    UNIQUE INDEX (image_id, product_id)
 );
 
 # Таблица связи товаров и разделов. Используется отношение многие ко многим, тк товар
