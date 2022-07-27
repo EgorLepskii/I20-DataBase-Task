@@ -11,12 +11,13 @@ ORDER BY products_count desc;
 
 SELECT s.name,
        s.description
-FROM sections s WHERE s.id = 1;
+FROM sections s
+WHERE s.id = 1;
 
 SELECT p.id              as product_id,
        p.name,
        p.main_section_id as main_section_id,
-       s.name           as main_section_name,
+       s.name            as main_section_name,
        i.link            as main_image_link,
        i.alt             as alt
 FROM sectionsProducts sP
