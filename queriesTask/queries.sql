@@ -33,7 +33,9 @@ SELECT p.name,
        p.description,
        p.price,
        p.promo_price,
-       p.discount_price
+       p.discount_price,
+       p.main_image_id,
+       p.main_section_id
 FROM products p WHERE p.id = 1;
 
 # Получение разделов товара
