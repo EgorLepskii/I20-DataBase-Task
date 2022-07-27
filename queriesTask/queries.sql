@@ -1,8 +1,9 @@
 # Вывод названия раздела и количества товаров в нем.
 SELECT s.id, s.name, COUNT(sP.id) as products_count
 FROM sections s
-         JOIN sectionsProducts sP on s.id = sP.section_id
-GROUP BY s.name
+          LEFT JOIN sectionsProducts sP on s.id = sP.section_id
+GROUP BY s.id
+HAVING products_count > 0
 ORDER BY products_count desc;
 
 
@@ -32,20 +33,14 @@ SELECT p.name,
        p.description,
        p.price,
        p.promo_price,
-       p.discount_price,
-       i.link as main_image,
-       s.id   as main_section_id,
-       s.name as main_section_name
-FROM products p
-         JOIN images i on i.id = p.main_image_id
-         JOIN sections s on s.id = p.main_section_id
-WHERE p.id = 1;
+       p.discount_price
+FROM products p WHERE p.id = 1;
 
 # Получение разделов товара
 SELECT s.id, s.name
-FROM sectionsProducts
-         JOIN sections s on s.id = sectionsProducts.section_id
-WHERE sectionsProducts.product_id = 5;
+FROM sectionsProducts sP
+         JOIN sections s on s.id = sP.section_id
+WHERE sP.product_id = 1;
 
 # Получение картинок товара
 SELECT i.link, i.alt
@@ -57,13 +52,13 @@ where product_id = 1;
 SELECT s.id, s.name, COUNT(sP.id) as products_count
 FROM sections s
          LEFT JOIN sectionsProducts sP on s.id = sP.section_id
-GROUP BY s.name
+GROUP BY s.id
 ORDER BY products_count desc;
 
 # Дополнительное задание 2
 SELECT s.id, s.name, COUNT(sP.id) as products_count
 FROM sections s
          JOIN sectionsProducts sP on s.id = sP.section_id
-GROUP BY s.name
+GROUP BY s.id
 HAVING products_count >= 2
 ORDER BY products_count desc;

@@ -19,7 +19,7 @@ VALUES ('main.png', 'default.png'),
        ('third.png', 'default.png');
 
 INSERT INTO products(name, is_active, price, description, discount_price, promo_price, main_section_id, main_image_id)
-VALUES ('IPhone', true, 1000, 'iphone description', 700, 600, 1, 1),
+VALUES ('IPhone', true, 1000, 'iphone description', 700, 600, 5, 1),
        ('Samsung', true, 500, 'samsung phone description', 400, 300, 1, 1),
        ('Huawei', true, 500, 'huawei phone description', 400, 400, 1, 1),
        ('Xiaomi', true, 500, 'xiaomi phone description', 499, 400, 1, 1),
@@ -37,7 +37,8 @@ VALUES ('IPhone', true, 1000, 'iphone description', 700, 600, 1, 1),
 
 
 INSERT INTO sectionsProducts(product_id, section_id)
-values (1, 1),
+values (1, 5),
+       (1, 1),
        (2, 1),
        (8, 3),
        (3, 1),
@@ -55,7 +56,7 @@ values (1, 1),
        (11, 1),
        (12, 1),
        (13, 1),
-       (14,1);
+       (14, 1);
 
 
 INSERT INTO productsImages(image_id, product_id)
@@ -75,5 +76,5 @@ VALUES (1, 1),
        (2, 11),
        (2, 12),
        (2, 13),
-       (2,14);
+       (2, 14);
 
