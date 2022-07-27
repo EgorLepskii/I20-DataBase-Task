@@ -7,21 +7,23 @@ ORDER BY products_count desc;
 
 
 # Детальная страница раздела.
-SELECT DISTINCT s.id,
+SELECT DISTINCT s.id              as section_id,
                 s.name            as category_name,
                 s.description,
+                p.id              as product_id,
                 p.name,
                 p.main_section_id as main_section_id,
                 s2.name           as main_section_name,
                 i.link            as main_image_link,
                 i.alt             as alt
-FROM sections s
-         JOIN sectionsProducts sP on s.id = sP.section_id
+FROM sectionsProducts sP
+         JOIN sections s on s.id = sP.section_id
          JOIN products p on p.id = sP.product_id
-         LEFT JOIN productsImages pI on p.id = pI.product_id
+         JOIN productsImages pI on p.id = pI.product_id
          JOIN images i on i.id = p.main_image_id
          JOIN sections s2 on s2.id = p.main_section_id
-WHERE s.id = 1 AND p.is_active = true
+WHERE s.id = 1
+  AND p.is_active = true
 LIMIT 12 OFFSET 0;
 
 
