@@ -55,23 +55,19 @@ where product_id = 1;
 
 
 # Дополнительное задание 1
-SELECT s.id, s.name, COUNT(sP.id) as products_count
+SELECT s.id, s.name, COUNT(IF(p.is_active = TRUE, 1, NULL)) as products_count
 FROM sectionsProducts sP
          RIGHT JOIN sections s on s.id = sP.section_id
          LEFT JOIN products p ON sP.product_id = p.id
-WHERE p.is_active = TRUE
-   OR p.id IS NULL
 GROUP BY s.id
 ORDER BY products_count desc;
 
 
 # Дополнительное задание 2
-SELECT s.id, s.name, COUNT(sP.id) as products_count
+SELECT s.id, s.name, COUNT(IF(p.is_active = TRUE, 1, NULL)) as products_count
 FROM sectionsProducts sP
          RIGHT JOIN sections s on s.id = sP.section_id
          LEFT JOIN products p ON sP.product_id = p.id
-WHERE p.is_active = TRUE
-   OR p.id IS NULL
 GROUP BY s.id
 HAVING products_count >= 2
 ORDER BY products_count desc;
