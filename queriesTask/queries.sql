@@ -1,18 +1,19 @@
 # Вывод названия раздела и количества товаров в нем.
 SELECT s.id, s.name, COUNT(sP.id) as products_count
 FROM sections s
-         LEFT JOIN sectionsProducts sP on s.id = sP.section_id
+         JOIN sectionsProducts sP on s.id = sP.section_id
+         JOIN products p on p.id = sP.product_id AND p.is_active = TRUE
 GROUP BY s.id
-HAVING products_count > 0
 ORDER BY products_count desc;
 
 
 # Детальная страница раздела.
 
-SELECT s.name,
+SELECT s.id,
+       s.name,
        s.description
-FROM sections s
-WHERE s.id = 1;
+FROM sections s;
+
 
 SELECT p.id              as product_id,
        p.name,
@@ -52,17 +53,25 @@ FROM productsImages pI
          JOIN images i on i.id = pI.image_id
 where product_id = 1;
 
+
 # Дополнительное задание 1
 SELECT s.id, s.name, COUNT(sP.id) as products_count
-FROM sections s
-         LEFT JOIN sectionsProducts sP on s.id = sP.section_id
+FROM sectionsProducts sP
+         RIGHT JOIN sections s on s.id = sP.section_id
+         LEFT JOIN products p ON sP.product_id = p.id
+WHERE p.is_active = TRUE
+   OR p.id IS NULL
 GROUP BY s.id
 ORDER BY products_count desc;
 
+
 # Дополнительное задание 2
 SELECT s.id, s.name, COUNT(sP.id) as products_count
-FROM sections s
-         JOIN sectionsProducts sP on s.id = sP.section_id
+FROM sectionsProducts sP
+         RIGHT JOIN sections s on s.id = sP.section_id
+         LEFT JOIN products p ON sP.product_id = p.id
+WHERE p.is_active = TRUE
+   OR p.id IS NULL
 GROUP BY s.id
 HAVING products_count >= 2
 ORDER BY products_count desc;
