@@ -9,35 +9,25 @@ ORDER BY products_count desc;
 
 # Детальная страница раздела.
 
-SELECT s.id,
-       s.name,
-       s.description
+SELECT *
 FROM sections s;
 
 
 SELECT p.id              as product_id,
        p.name,
        p.main_section_id as main_section_id,
-       s.name            as main_section_name,
        i.link            as main_image_link,
        i.alt             as alt
 FROM sectionsProducts sP
          JOIN products p on p.id = sP.product_id
          JOIN images i on i.id = p.main_image_id
-         JOIN sections s on s.id = p.main_section_id
 WHERE sP.section_id = 1
   AND p.is_active = true
 LIMIT 12 OFFSET 0;
 
 
 # Получение информации о товаре по идентификатору
-SELECT p.name,
-       p.description,
-       p.price,
-       p.promo_price,
-       p.discount_price,
-       p.main_image_id,
-       p.main_section_id
+SELECT *
 FROM products p
 WHERE p.id = 1;
 
@@ -51,23 +41,23 @@ WHERE sP.product_id = 1;
 SELECT i.link, i.alt
 FROM productsImages pI
          JOIN images i on i.id = pI.image_id
-where product_id = 1;
+where pI.product_id = 1;
 
 
 # Дополнительное задание 1
-SELECT s.id, s.name, COUNT(IF(p.is_active = TRUE, 1, NULL)) as products_count
+SELECT s.id, s.name, COUNT(p.id) as products_count
 FROM sectionsProducts sP
          RIGHT JOIN sections s on s.id = sP.section_id
-         LEFT JOIN products p ON sP.product_id = p.id
+         LEFT JOIN products p ON sP.product_id = p.id and p.is_active = TRUE
 GROUP BY s.id
 ORDER BY products_count desc;
 
 
 # Дополнительное задание 2
-SELECT s.id, s.name, COUNT(IF(p.is_active = TRUE, 1, NULL)) as products_count
+SELECT s.id, s.name, COUNT(p.id) as products_count
 FROM sectionsProducts sP
          RIGHT JOIN sections s on s.id = sP.section_id
-         LEFT JOIN products p ON sP.product_id = p.id
+         LEFT JOIN products p ON sP.product_id = p.id AND p.is_active = TRUE
 GROUP BY s.id
 HAVING products_count >= 2
 ORDER BY products_count desc;
